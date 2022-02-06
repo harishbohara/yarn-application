@@ -86,7 +86,7 @@ public class YarnSimpleLsCommandRunOnYarn {
         appContext.setAMContainerSpec(amContainer);
         yarnClient.submitApplication(appContext);
 
-        Thread.sleep(10_000);
+        Thread.sleep(10_0000000);
         yarnClient.killApplication(appId);
     }
 
