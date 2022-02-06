@@ -52,6 +52,7 @@ public class YarnSimpleLsCommandRunOnYarn {
         appContext.setApplicationName(appName);
         appContext.setQueue("default");
 
+        // Move this jar to Yarn so it can run it
         Map<String, LocalResource> localResources = new HashMap<String, LocalResource>();
         addToLocalResources(
                 fs,
