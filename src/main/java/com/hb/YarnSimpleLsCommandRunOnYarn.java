@@ -1,5 +1,6 @@
 package com.hb;
 
+
 import org.apache.commons.io.IOUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataOutputStream;
@@ -28,7 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 public class YarnSimpleLsCommandRunOnYarn {
-    private static String appName = "harish";
+    public static String appName = "harish";
     private static final String appMasterJarPath = "AppMaster.jar";
 
     public static void main(String[] args) throws IOException, YarnException, InterruptedException {
@@ -74,6 +75,7 @@ public class YarnSimpleLsCommandRunOnYarn {
 
         // What we want to do -> Here we just want to run a "ls -la" command
         Map<String, String> env = new HashMap<>();
+        env.put("__app_id__", appId.toString());
         List<String> commands = new ArrayList<>();
         // commands.add("ls -la");
         commands.add("java -cp \"AppMaster.jar:.\" com.harish.yarn.am.ApplicationManager");
@@ -116,4 +118,6 @@ public class YarnSimpleLsCommandRunOnYarn {
                         scFileStatus.getLen(), scFileStatus.getModificationTime());
         localResources.put(fileDstPath, scRsrc);
     }
+
+
 }
