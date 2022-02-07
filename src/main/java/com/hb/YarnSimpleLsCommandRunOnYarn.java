@@ -56,7 +56,7 @@ public class YarnSimpleLsCommandRunOnYarn {
         Map<String, LocalResource> localResources = new HashMap<String, LocalResource>();
         addToLocalResources(
                 fs,
-                "/Users/harishbohara/workspace/personal/userlib/target/base-0.0.2-SNAPSHOT-jar-with-dependencies.jar",
+                "/Users/harishbohara/workspace/personal/bigdata/target/bigdata-1.0-SNAPSHOT-jar-with-dependencies.jar",
                 appMasterJarPath,
                 appId.toString(),
                 localResources,
@@ -68,7 +68,7 @@ public class YarnSimpleLsCommandRunOnYarn {
         appContext.setPriority(pri);
 
         // Step 4 - what resources we need e.g. Ram and Cpu
-        Resource capability = Resource.newInstance(1024, 2);
+        Resource capability = Resource.newInstance(1024, 1);
         appContext.setResource(capability);
 
 
@@ -76,7 +76,7 @@ public class YarnSimpleLsCommandRunOnYarn {
         Map<String, String> env = new HashMap<>();
         List<String> commands = new ArrayList<>();
         // commands.add("ls -la");
-        commands.add("java -jar AppMaster.jar");
+        commands.add("java -cp \"AppMaster.jar:.\" com.harish.yarn.am.ApplicationManager");
 
         // Step 5 - What we want to launch
         ContainerLaunchContext amContainer = ContainerLaunchContext
