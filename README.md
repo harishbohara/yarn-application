@@ -1,11 +1,16 @@
-# yarn-application
-How yarn application works - this is a sample yarn app which is created by me. 
+This is a complete end-to-end Yarn application. It will do the following:
+1. Submit yarn job to yarn cluster
+2. Start an application manager
+3. Application manager will launch 3 more container to run this app
 
-In this example I create a app which pushes Kafka events, I submitted this app to Yarn, and it ran it.
+## How to run
+1. Run ```YarnSimpleLsCommandRunOnYarn```, which will send yoy application manger to run on Yarn
+  
+Note - I have added the application manager and the application all in this single project. Change 
+```YarnSimpleLsCommandRunOnYarn``` which has hard coded path to my jar in main method 
+```bigdata-1.0-SNAPSHOT-jar-with-dependencies.jar```
 
-##### What yarn is doing?
-Actually it does, what you ask it to do. For example, you can move a Jar to HDFS and ask Yarn to run it using 
-"java -jar app.jar". 
+2. Once you run it, you will see a job is summited to YARN. This is the application manager
 
-##### Asking for 2-3 containers to do the real work
-This sample also asks for 3 nodes (1GB, 1 CPU) from resource manager
+3. Once application manager starts, it will ask for 3 more container to run which will run the app 
+```com.harish.yarn.application.Application```. This is a dummy app which just prints number in the loop.
